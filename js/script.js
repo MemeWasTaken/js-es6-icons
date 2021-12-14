@@ -114,81 +114,40 @@ let icons = [
 	}
 ];
 
-// SECTION MILESTONES 1 & 2 //
-// Print in DOM a box for each icon.
-let iconsContainer = document.getElementById('icons-container')
-for (let i = 0; i < icons.length; i++) {
+// SECTION functions //
+function printInDom(typeObj, typeObj2, typeObj3) {
+	let iconsContainer = document.getElementById('icons-container');
+	iconsContainer.innerHTML = '';
+	for (let i = 0; i < icons.length; i++) {
 	const obj = icons[i];
-	let templateBoxIcon = `
-	<div class="box-icon">
-	<i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
-	<span class="name-icon">${obj.name}</span>
-	</div>
-    `;
-	iconsContainer.innerHTML += templateBoxIcon;
+		if (obj.type == typeObj || obj.type == typeObj2 || obj.type == typeObj3) {
+		let templateBoxIcon = `
+		<li class="box-icon">
+		<i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
+		<span class="name-icon">${obj.name}</span>
+		</li>
+		`;
+		iconsContainer.innerHTML += templateBoxIcon;
+		}
+	}
 }
+
+// SECTION MILESTONES 1 & 2 //
+// By default print all the icons
+printInDom('animal', 'vegetable', 'user');
+
 
 // SECTION MILESTONES 3 //
 const selectFamily = document.getElementById('selectFamily');
 selectFamily.addEventListener('change', (event) => {
     const valueFamily = selectFamily.value;
     if (valueFamily == 0) {
-        let iconsContainer = document.getElementById('icons-container');
-		iconsContainer.innerHTML = '';
-        for (let i = 0; i < icons.length; i++) {
-            const obj = icons[i];
-            let templateBoxIcon = `
-            <div class="box-icon">
-                <i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
-                <span class="name-icon">${obj.name}</span>
-            </div>
-        `;
-    iconsContainer.innerHTML += templateBoxIcon;
-        } 
+    printInDom('animal', 'vegetable', 'user');	//Print all the icons
     } else if (valueFamily == 1) {
-        let iconsContainer = document.getElementById('icons-container');
-		iconsContainer.innerHTML = '';
-        for (let i = 0; i < icons.length; i++) {
-            const obj = icons[i];
-			if (obj.type == 'animal') {
-            let templateBoxIcon = `
-            <div class="box-icon">
-                <i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
-                <span class="name-icon">${obj.name}</span>
-            </div>
-        `;
-		iconsContainer.innerHTML += templateBoxIcon;
-        	}
-		}
+		printInDom('animal'); //Print the animal icons
     } else if (valueFamily == 2) {
-        let iconsContainer = document.getElementById('icons-container');
-		iconsContainer.innerHTML = '';
-        for (let i = 0; i < icons.length; i++) {
-            const obj = icons[i];
-			if (obj.type == 'vegetable') {
-            let templateBoxIcon = `
-            <div class="box-icon">
-                <i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
-                <span class="name-icon">${obj.name}</span>
-            </div>
-        `;
-		iconsContainer.innerHTML += templateBoxIcon;
-			}
-		}
+		printInDom('vegetable'); //Print the vegetable icons
     } else if (valueFamily == 3) {
-        let iconsContainer = document.getElementById('icons-container');
-		iconsContainer.innerHTML = '';
-        for (let i = 0; i < icons.length; i++) {
-            const obj = icons[i];
-			if (obj.type == 'user') {
-            let templateBoxIcon = `
-            <div class="box-icon">
-                <i style="color:${obj.color}" class="${obj.family} ${obj.prefix}${obj.name}"></i>
-                <span class="name-icon">${obj.name}</span>
-            </div>
-        `;
-		iconsContainer.innerHTML += templateBoxIcon;
-    		}
-		}
+		printInDom('user'); //Print the user icons
 	}
 });
